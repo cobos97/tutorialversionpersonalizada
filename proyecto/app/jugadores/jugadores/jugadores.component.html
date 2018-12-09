@@ -1,0 +1,55 @@
+<h3>Listado de Jugadores</h3>
+<a type="button" mdbBtn color="light" mdbWavesEffect class="float-md-right lime accent-4" routerLink="/addjug">Añadir
+    nuevo presupuesto</a>
+<br>
+<table class="table table-bordered table-striped tabla" style="margin-top:40px;">
+    <thead>
+    <tr class="filters">
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let jugador of jugadores$">
+        <td>{{jugador.data.nombre}}</td>
+        <td>{{jugador.data.apellidos}}</td>
+        <td>{{jugador.data.fechanac}}</td>
+        <td><button type="button" mdbBtn color="success" data-toggle="modal" data-target="#basicExample"
+                    routerLink="/editjug/{{ jugador.key }}/{{ jugador.data.nombre }}/{{ jugador.data.apellidos }}/{{ jugador.data.fechanac }}" mdbWavesEffect>Editar</button></td>
+        <td><button type="button" mdbBtn color="danger" class="relative waves-light"
+                    (click)="basicModal.show(); guardarID(jugador.key)" mdbWavesEffect>Eliminar</button></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div class="alert alert-danger" role="alert" *ngIf="jugadores$.length==0">
+    No hay ningún jugador insertado
+</div>
+
+<!-- Modal -->
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Eliminar</h4>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de que desea eliminar el jugador?
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn color="danger" class="waves-light"
+                        aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
+                <button type="button" mdbBtn color="success" class="relative waves-light" mdbWavesEffect
+                        (click)="eliminarJugador(); basicModal.hide()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

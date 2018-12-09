@@ -1,0 +1,43 @@
+<div class="menu">
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light lime accent-4">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Club de Tenis</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/">Inicio<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" routerLinkActive="active" *ngIf='isLogged$ | async'>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/addjug">Añadir jugadores<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" routerLinkActive="active" *ngIf='isLogged$ | async'>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/jugadores">Jugadores<span class="sr-only">(current)</span></a>
+      </li>
+      <!--
+      <li class="nav-item active" routerLinkActive="active" *ngIf='!(isLogged$ | async)'>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/registro">Registro<span class="sr-only">(current)</span></a>
+      </li>
+      -->
+      <li class="nav-item active" routerLinkActive="active" *ngIf='!(isLogged$ | async)'>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/iniciosesion">Inicie sesión<span class="sr-only">(current)</span></a>
+      </li>
+
+
+      <li class="nav-item" *ngIf='isLogged$ | async'>
+        <button class="btn btn-light"
+                (click)="onLogout()">Cerrar sesión</button>
+      </li>
+    </ul>
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+</div>

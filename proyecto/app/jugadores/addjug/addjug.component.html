@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+        <h2>Añadir nuevo jugador</h2>
+        <form [formGroup]="jugadoresForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text"
+                       class="form-control"
+                       id="nombre"
+                       formControlName="nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text"
+                       class="form-control"
+                       id="apellidos"
+                       formControlName="apellidos">
+            </div>
+            <div class="form-group">
+                <label for="fechanac">Fecha Nacimiento</label>
+                <input type="date"
+                       class="form-control"
+                       id="fechanac"
+                       formControlName="fechanac">
+            </div>
+
+            <button type="submit" mdbBtn color="light" class="lime accent-4" mdbWavesEffect [disabled]="!jugadoresForm.valid">Añadir jugador</button>
+
+            <div class="alert alert-danger" role="alert" *ngIf="!jugadoresForm.valid && !enviado">
+                Por favor rellene todos los campos
+            </div>
+
+            <div class="alert alert-success" role="alert" *ngIf="enviado">
+                Nuevo jugador insertado en la base de datos
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
